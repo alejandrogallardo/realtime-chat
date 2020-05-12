@@ -1,0 +1,41 @@
+1. npm init -y
+
+2. npm i express socket.io moment
+
+package.json
+"start": "node server",
+"dev": "nodemon server"
+
+server.js en la raiz
+
+1 - 
+===================================================
+
+const path = require('path'); // 1
+const express = require('express'); // 1
+
+const app = express(); //1
+
+// Set static folder 1
+app.use(express.static(path.join(__dirname, 'public')));
+
+const PORT = process.env.PORT || 3000; // 1
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // 1
+
+===================================================
+
+const socketio = require('socket.io'); // 3
+const io = socketio(server) // 3
+
+// Run when clien connect 3
+io.on('connection', socket => {
+        console.log('New WS Connection...');
+});
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/main.js"></script>
+
+main.js
